@@ -1,0 +1,29 @@
+/* responsive.css - tablet / desktop / small-phone adjustments */
+@media (min-width: 960px) {
+  .game-page { --board-size: min(calc(100dvh - 120px), calc(100vw - 440px), 720px); }
+  .game-layout { grid-template-columns: auto 330px; grid-template-areas: "board players" "board controls"; align-items: start; justify-items: stretch; gap: 1rem 1.5rem; justify-content: center; padding-top: 1.2rem; }
+  .game-layout .players { flex-direction: column; align-self: start; justify-content: flex-start; }
+  .game-layout .controls { width: 100%; align-self: start; }
+  .chip { min-width: 0; }
+}
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 1.5rem; padding-top: 1.5rem; }
+  .hero-board { order: -1; --board-size: min(100%, 420px); }
+  .nav { display: none; }
+  .topbar { flex-wrap: wrap; }
+}
+@media (max-width: 520px) {
+  body { font-size: 15px; }
+  .topbar { padding: .5rem .8rem; }
+  .panel { padding: 1.1rem; }
+  .rows .row { grid-template-columns: 1fr 7rem; }
+  .chip { min-width: 0; flex: 1 1 45%; padding: .35rem .6rem; }
+  .controls { gap: .8rem; padding: .6rem .8rem; }
+  .dice { width: 62px; height: 62px; padding: 8px; }
+  .turn-text { font-size: 1.05rem; }
+  .join { grid-template-columns: 1fr; }
+  .stats { gap: 1.2rem; }
+}
+@media (max-height: 640px) and (orientation: landscape) and (max-width: 959px) {
+  .game-page { --board-size: min(calc(100dvh - 130px), 94vw); }
+}

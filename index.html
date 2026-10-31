@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ludo Lane - play Ludo online, offline or against the computer</title>
+  <meta name="description" content="Play Ludo with friends online, on one device, or against the computer.">
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/board.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="home">
+  <header class="topbar">
+    <a class="brand" href="index.html"><img src="assets/images/logo.svg" alt="" width="34" height="34"><span>Ludo Lane</span></a>
+    <nav class="nav" aria-label="Sections"><a href="#rules">Rules</a><a href="#about">About</a></nav>
+    <div id="auth-area" class="auth-area"></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Roll a six. Send a friend home.</h1>
+        <p class="lead">Classic four-colour Ludo for up to four players. Play with friends over the internet, pass one device around the table, or take on the computer.</p>
+        <div class="modes">
+          <button class="btn mode m-red" id="btn-online"><strong>Play Online</strong><span>Create a room and share the code</span></button>
+          <button class="btn mode m-green" id="btn-offline"><strong>Play Offline</strong><span>2-4 players on this device</span></button>
+          <button class="btn mode m-yellow" id="btn-ai"><strong>Play Against AI</strong><span>Easy, medium or hard opponents</span></button>
+        </div>
+        <p id="fb-note" class="note" hidden>Online play and accounts need a Firebase project (see README). Offline and AI modes work right now.</p>
+      </div>
+      <div class="hero-board"><div id="hero-board" aria-hidden="true"></div></div>
+    </section>
+
+    <section class="panel profile" id="profile" aria-labelledby="profile-h">
+      <h2 id="profile-h">Your table</h2>
+      <div id="profile-out"><p>Log in to keep your online win record.</p><p><a class="btn primary small" href="login.html">Log in</a> <a class="btn ghost small" href="register.html">Create account</a></p></div>
+      <div id="profile-in" hidden>
+        <p class="profile-name" id="profile-name"></p>
+        <dl class="stats"><div><dt>Online games</dt><dd id="st-played">0</dd></div><div><dt>Wins</dt><dd id="st-wins">0</dd></div><div><dt>Win rate</dt><dd id="st-rate">-</dd></div></dl>
+      </div>
+    </section>
+
+    <section class="panel" id="rules" aria-labelledby="rules-h">
+      <h2 id="rules-h">Rules used in this game</h2>
+      <ul class="rules">
+        <li>Each player has four tokens that start in their yard. Roll a <b>6</b> to bring one out onto your start cell.</li>
+        <li>Move clockwise around the board, then up your coloured lane. You need the <b>exact number</b> to land on the final home cell.</li>
+        <li>Land on an opponent's token to <b>capture</b> it. It goes back to its yard. Tokens on <b>safe cells</b> (start cells and stars) cannot be captured.</li>
+        <li>You get an <b>extra turn</b> when you roll a 6, capture a token, or bring a token home.</li>
+        <li>Three 6s in a row cost you the turn. If no token can move, the turn passes automatically.</li>
+        <li>The first player to bring all four tokens home wins.</li>
+      </ul>
+    </section>
+
+    <section class="panel" id="about" aria-labelledby="about-h">
+      <h2 id="about-h">About</h2>
+      <p>Ludo Lane is a student-friendly web project built with plain HTML, CSS and JavaScript. Online rooms use Firebase Authentication and the Realtime Database. Offline and AI games run entirely in your browser and use the same rules engine.</p>
+    </section>
+  </main>
+  <footer class="footer">Ludo Lane. Board drawn with CSS, sounds made with WebAudio. No commercial game assets.</footer>
+
+  <dialog id="dlg-offline" aria-labelledby="off-h">
+    <h2 id="off-h">Play offline</h2>
+    <p class="muted">Pass the device around. Pick how many players.</p>
+    <div class="seg" id="off-count" role="group" aria-label="Number of players">
+      <button type="button" data-n="2" aria-pressed="true">2 players</button><button type="button" data-n="3" aria-pressed="false">3 players</button><button type="button" data-n="4" aria-pressed="false">4 players</button>
+    </div>
+    <div id="off-rows" class="rows"></div>
+    <div class="modal-actions"><button class="btn ghost" data-close type="button">Cancel</button><button class="btn primary" id="off-start" type="button">Start game</button></div>
+  </dialog>
+
+  <dialog id="dlg-ai" aria-labelledby="ai-h">
+    <h2 id="ai-h">Play against the computer</h2>
+    <label class="field">Your name<input id="ai-name" type="text" maxlength="12" placeholder="You"></label>
+    <label class="field">Your colour<select id="ai-color"></select></label>
+    <div class="field">Computer opponents
+      <div class="seg" id="ai-count" role="group" aria-label="Number of computer opponents">
+        <button type="button" data-n="1" aria-pressed="true">1</button><button type="button" data-n="2" aria-pressed="false">2</button><button type="button" data-n="3" aria-pressed="false">3</button>
+      </div></div>
+    <label class="field">Difficulty
+      <select id="ai-level"><option value="easy">Easy - random moves</option><option value="medium" selected>Medium - captures and safety</option><option value="hard">Hard - avoids danger</option></select></label>
+    <div class="modal-actions"><button class="btn ghost" data-close type="button">Cancel</button><button class="btn primary" id="ai-start" type="button">Start game</button></div>
+  </dialog>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

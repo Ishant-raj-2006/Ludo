@@ -1,0 +1,56 @@
+/* board.css - board, tokens, dice, players bar, game layout */
+.board { --board-size: 100%; position: relative; width: var(--board-size); aspect-ratio: 1; display: grid; grid-template: repeat(15, 1fr) / repeat(15, 1fr);
+  background: #fff8ea; border: 4px solid #120d08; border-radius: 12px; box-shadow: 0 14px 40px rgba(0,0,0,.55), inset 0 0 0 2px var(--brass); container-type: inline-size; }
+.yard { position: relative; display: grid; place-items: center; }
+.yard.y0 { background: var(--red); border-radius: 8px 0 0 0; } .yard.y1 { background: var(--green); border-radius: 0 8px 0 0; }
+.yard.y2 { background: var(--yellow); border-radius: 0 0 8px 0; } .yard.y3 { background: var(--blue); border-radius: 0 0 0 8px; }
+.yard-box { width: 66.67%; height: 66.67%; background: #fff8ea; border-radius: 14%; display: grid; grid-template: 1fr 1fr / 1fr 1fr; place-items: center; }
+.yard-box i { width: 56%; aspect-ratio: 1; border-radius: 50%; background: rgba(0,0,0,.1); box-shadow: inset 0 2px 4px rgba(0,0,0,.25); }
+.cell { border: 1px solid #cdbf9f; background: #fffdf6; display: grid; place-items: center; }
+.cell.safe::after { content: "\2605"; font-size: 3.6cqw; line-height: 1; color: #9b8a66; }
+.cell.start::after { color: #fff; }
+.cell.c0, .cell.lane.c0 { background: var(--red); } .cell.c1 { background: var(--green); }
+.cell.c2 { background: var(--yellow); } .cell.c3 { background: var(--blue); }
+.cell.lane { border-color: rgba(0,0,0,.2); }
+.centre { background: conic-gradient(var(--green) 0 45deg, var(--yellow) 45deg 135deg, var(--blue) 135deg 225deg, var(--red) 225deg 315deg, var(--green) 315deg 360deg); border: 1px solid rgba(0,0,0,.35); }
+.tokens { position: absolute; inset: 0; pointer-events: none; }
+.token { --tc: #888; --tcd: #444; position: absolute; width: 5.4%; aspect-ratio: 1; padding: 0; border-radius: 50%; border: 2px solid #fff;
+  background: radial-gradient(circle at 34% 28%, rgba(255,255,255,.85) 0 10%, var(--tc) 42%, var(--tcd) 100%); box-shadow: 0 2px 4px rgba(0,0,0,.55);
+  transform: translate(-50%, -50%) scale(var(--s, 1)); transition: left .17s ease-in-out, top .17s ease-in-out, transform .17s; pointer-events: none; }
+.token[data-color="red"] { --tc: var(--red); --tcd: var(--red-d); } .token[data-color="green"] { --tc: var(--green); --tcd: var(--green-d); }
+.token[data-color="yellow"] { --tc: var(--yellow); --tcd: var(--yellow-d); } .token[data-color="blue"] { --tc: var(--blue); --tcd: var(--blue-d); }
+.token.hopping { transform: translate(-50%, -62%) scale(1.25); }
+.token.movable { pointer-events: auto; cursor: pointer; z-index: 20 !important; animation: bounce .55s ease-in-out infinite alternate; outline: 3px solid #fff; box-shadow: 0 0 0 6px rgba(227,167,47,.85), 0 3px 6px rgba(0,0,0,.6); }
+@keyframes bounce { to { transform: translate(-50%, -72%) scale(1.15); } }
+
+/* dice */
+.dice { --dc: var(--line); width: 76px; height: 76px; flex: none; padding: 10px; background: #fffdf6; border: 4px solid var(--dc); border-radius: 16px; display: grid; grid-template: repeat(3, 1fr) / repeat(3, 1fr); box-shadow: 0 6px 14px rgba(0,0,0,.5); }
+.dice[data-color="red"] { --dc: var(--red); } .dice[data-color="green"] { --dc: var(--green); } .dice[data-color="yellow"] { --dc: var(--yellow); } .dice[data-color="blue"] { --dc: var(--blue); }
+.dice span { border-radius: 50%; place-self: center; width: 78%; height: 78%; }
+.dice span.on { background: #1b140d; }
+.dice.rolling { animation: tumble .16s linear infinite; }
+@keyframes tumble { 0% { transform: rotate(-9deg) translateY(0); } 50% { transform: rotate(8deg) translateY(-5px); } 100% { transform: rotate(-9deg) translateY(0); } }
+
+/* players bar */
+.players { display: flex; gap: .5rem; flex-wrap: wrap; }
+.chip { display: grid; grid-template-columns: auto 1fr; column-gap: .55rem; padding: .45rem .8rem; border-radius: 10px; background: var(--panel); border: 2px solid var(--line); min-width: 8.5rem; transition: border-color .2s, background .2s; }
+.chip .dot { grid-row: span 2; align-self: center; width: 18px; height: 18px; border-radius: 50%; background: var(--cc); }
+.chip.c0 { --cc: var(--red); } .chip.c1 { --cc: var(--green); } .chip.c2 { --cc: var(--yellow); } .chip.c3 { --cc: var(--blue); }
+.chip.active { border-color: var(--cc); background: var(--panel-2); box-shadow: 0 0 0 3px color-mix(in srgb, var(--cc) 45%, transparent); }
+.chip.off { opacity: .55; }
+.chip-name { font-weight: 700; } .chip-name small { font-weight: 400; color: var(--muted); }
+.chip-home { font-size: .8rem; color: var(--muted); }
+
+/* game layout */
+.game-page { --board-size: min(94vw, calc(100dvh - 270px), 640px); }
+.room-info { margin: 0 auto; color: var(--muted); font-weight: 700; letter-spacing: .04em; }
+.game-layout { display: grid; gap: .9rem; justify-items: center; padding: .9rem; max-width: 1200px; margin: 0 auto; grid-template-areas: "players" "board" "controls"; }
+.game-layout .players { grid-area: players; justify-content: center; }
+.board-wrap { grid-area: board; width: var(--board-size); }
+.controls { grid-area: controls; display: flex; align-items: center; gap: 1.1rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: .8rem 1.1rem; width: min(var(--board-size), 100%); }
+.control-text { display: grid; gap: .25rem; min-width: 0; flex: 1; }
+.turn-text { font: 700 1.2rem var(--font-head); margin: 0; }
+.msg { margin: 0; color: var(--muted); min-height: 1.4em; font-size: .95rem; }
+.control-text .btn { justify-self: start; }
+body[data-turn="red"] .turn-text { color: #ff6b7a; } body[data-turn="green"] .turn-text { color: #5fd790; }
+body[data-turn="yellow"] .turn-text { color: var(--yellow); } body[data-turn="blue"] .turn-text { color: #7fa8ff; }

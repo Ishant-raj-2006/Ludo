@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in - Ludo Lane</title>
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="auth-page">
+  <main class="auth-card">
+    <a class="brand" href="index.html"><img src="assets/images/logo.svg" alt="" width="34" height="34"><span>Ludo Lane</span></a>
+    <h1>Log in</h1>
+    <p id="config-warning" class="alert" hidden>Firebase is not configured yet, so accounts are unavailable. Offline and AI modes work without logging in. See the README to set up Firebase.</p>
+    <form id="auth-form" novalidate>
+      <label class="field">Email<input id="email" type="email" autocomplete="email" required></label>
+      <label class="field">Password<input id="password" type="password" autocomplete="current-password" required></label>
+      <p id="form-error" class="alert" role="alert" hidden></p>
+      <p id="form-ok" class="ok" role="status" hidden></p>
+      <button class="btn primary wide" type="submit">Log in</button>
+      <button class="btn link" type="button" id="btn-forgot">Forgot password?</button>
+    </form>
+    <p class="muted">New here? <a href="register.html">Create an account</a> or <a href="index.html">go back home</a>.</p>
+  </main>
+  <script type="module" src="js/auth-pages.js"></script>
+</body>
+</html>

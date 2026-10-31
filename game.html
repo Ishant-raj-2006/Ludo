@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Game - Ludo Lane</title>
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/board.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="game-page">
+  <header class="topbar">
+    <button class="btn ghost small" id="btn-leave" type="button">Leave</button>
+    <div class="room-info" id="room-info" role="status"></div>
+    <button class="btn ghost small" id="btn-mute" type="button" aria-pressed="false">Sound on</button>
+  </header>
+  <main class="game-layout">
+    <section id="players" class="players" aria-label="Players"></section>
+    <section class="board-wrap"><div id="board"></div></section>
+    <section class="controls" aria-label="Dice and turn">
+      <div id="dice"></div>
+      <div class="control-text">
+        <p id="turn-text" class="turn-text" aria-live="polite">Loading…</p>
+        <p id="msg" class="msg" aria-live="polite"></p>
+        <button class="btn primary" id="btn-roll" type="button" disabled>Roll dice</button>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="js/game-main.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Online lobby - Ludo Lane</title>
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="auth-page">
+  <main class="auth-card lobby">
+    <a class="brand" href="index.html"><img src="assets/images/logo.svg" alt="" width="34" height="34"><span>Ludo Lane</span></a>
+    <h1>Online lobby</h1>
+    <p id="config-warning" class="alert" hidden>Online play needs Firebase. Paste your keys into <code>js/firebase-config.js</code> (see the README). <a href="index.html">Back home</a></p>
+
+    <section id="view-start" hidden>
+      <p class="muted">Playing as <b id="who"></b></p>
+      <button class="btn primary wide" id="btn-create" type="button">Create a room</button>
+      <p class="or">or join a friend</p>
+      <form id="join-form" class="join">
+        <label class="field">Room code<input id="join-code" type="text" maxlength="6" autocomplete="off" autocapitalize="characters" placeholder="ABC123" required></label>
+        <button class="btn ghost" type="submit">Join room</button>
+      </form>
+      <p id="start-error" class="alert" role="alert" hidden></p>
+      <p><a href="index.html">Back home</a></p>
+    </section>
+
+    <section id="view-room" hidden>
+      <div class="code-box"><span class="muted">Room code</span><strong id="room-code" class="code"></strong><button class="btn ghost small" id="btn-copy" type="button">Share code</button></div>
+      <ul id="seat-list" class="seats" aria-label="Players in this room"></ul>
+      <p id="lobby-note" class="note" role="status"></p>
+      <div class="lobby-actions">
+        <button class="btn primary" id="btn-ready" type="button" hidden>I am ready</button>
+        <button class="btn primary" id="btn-start" type="button" hidden>Start match</button>
+        <button class="btn primary" id="btn-rematch" type="button" hidden>Reopen room for rematch</button>
+        <button class="btn ghost" id="btn-leave" type="button">Leave room</button>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="js/lobby.js"></script>
+</body>
+</html>
