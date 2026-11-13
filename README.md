@@ -28,7 +28,7 @@ ludo-game/
 │   ├── online-game.js   realtime game loop (Firebase)
 │   ├── lobby.js         rooms, seats, ready/start
 │   ├── room-utils.js    seat helpers, presence, state <-> database conversion
-│   ├── firebase-config.js  YOUR Firebase keys (edit this)
+│   ├── firebase-config.js  Firebase project configuration
 │   ├── auth.js / auth-pages.js   login, register, stats
 │   ├── app.js           home page logic
 │   └── game-main.js     picks the mode when game.html loads
@@ -65,9 +65,9 @@ Alternative without VS Code: open PowerShell in the folder and run `python -m ht
 
 1. Go to <https://console.firebase.google.com> > **Add project** (Analytics optional).
 2. **Project overview > Web icon (`</>`)** > register app (tick *Also set up Firebase Hosting* if you want) > copy the `firebaseConfig` values.
-3. Paste them into `js/firebase-config.js`. (These web keys are not secrets. Security comes from the rules. **Never** add service-account keys to this project.)
+3. This project is preconfigured for `ludo-4ec15`; if you use a different Firebase project, replace the values in `js/firebase-config.js`. (These web keys are not secrets. Security comes from the rules. **Never** add service-account keys to this project.)
 4. **Build > Authentication > Get started > Sign-in method > Email/Password > Enable**.
-5. **Build > Realtime Database > Create database**. Choose the region nearest you (e.g. `asia-southeast1` Singapore for India). Start in **locked mode**. Copy the exact **database URL** shown at the top (it contains the region) into `databaseURL` in `firebase-config.js`.
+5. **Build > Realtime Database > Create database**. Choose the region nearest you (e.g. `asia-southeast1` Singapore for India). Start in **locked mode**. `databaseURL` is set to the existing `ludo-4ec15` database in `asia-southeast1`; if you created a database in another project or region, replace it with the exact URL shown at the top of the Realtime Database page.
 6. Realtime Database > **Rules** tab > paste the contents of `database.rules.json` > **Publish**.
 7. Authentication > **Settings > Authorized domains**: `localhost` and `127.0.0.1` are there by default; your `*.web.app` domain is added automatically on hosting.
 

@@ -10,16 +10,17 @@ import { getAuth } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-aut
 import { getDatabase } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js';
 
 export const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_PROJECT_ID.firebaseapp.com',
-  databaseURL: 'https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com', // copy the exact URL shown in Realtime Database
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_PROJECT_ID.appspot.com',
-  messagingSenderId: 'YOUR_SENDER_ID',
-  appId: 'YOUR_APP_ID'
+  apiKey: 'AIzaSyBn5EO05e15VQ8p_GrmDJVpb4pIBZmc-f4',
+  authDomain: 'ludo-4ec15.firebaseapp.com',
+  databaseURL: 'https://ludo-4ec15-default-rtdb.asia-southeast1.firebasedatabase.app',
+  projectId: 'ludo-4ec15',
+  storageBucket: 'ludo-4ec15.firebasestorage.app',
+  messagingSenderId: '180530017282',
+  appId: '1:180530017282:web:2a7c050478338dce93e31b',
+  measurementId: 'G-L5M4K32K7C'
 };
 
-/** false until you paste real values. Offline + AI modes never need this. */
+/** Offline + AI modes never need Firebase, even when it is configured. */
 export const isConfigured =
   !String(firebaseConfig.apiKey).includes('YOUR_') &&
   !String(firebaseConfig.databaseURL).includes('YOUR_');
